@@ -1,0 +1,2336 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelGood</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #081118;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <!-- style for navbar-->
+        <style data-emotion-css="css10">
+            .css10 {
+                height: 136px;
+                background-color: #081118;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                font-size: 16px;
+                padding: 24px 60px;
+            }
+            @media screen and (max-width: 1025px) {
+                .css10 {
+                padding-right: 20px;
+                font-size: 15px;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                .css10 {
+                padding-left: 12px;
+                padding-right: 12px;
+                font-size: 14px;
+                }
+            }
+            @media screen and (max-width: 450px) {
+                .css10 {
+                padding-top: 18px;
+                padding-bottom: 10px;
+                height: 115px;
+                }
+            }
+        </style>
+        <style data-emotion-css="css9">
+            .css9 {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 24px;
+              margin-left: 6px;
+              min-height: 44px;
+            }
+            @media screen and (max-width: 430px) {
+              .css9 {
+                margin-bottom: 8px;
+              }
+            }
+          </style>
+          <style data-emotion-css="css8">
+            .css8 {
+              background-size: contain;
+              background-repeat: no-repeat;
+              cursor: pointer;
+              width: 130px;
+              min-width: 100px;
+              height: 32px;
+              margin-right: 30px;
+              background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMTEgMjciPjx0aXRsZT5Mb2dvPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBpZD0iU3ltYm9scyIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgaWQ9IkxvZ28iIGZpbGw9IiMwMERDODkiPjxnIGlkPSJHcm91cC00Ij48cGF0aCBpZD0iRmlsbC0xIiBkPSJNMzYuMjc3MjY2NywxNS43NTQ3Nzk2IEwzNi4yNzcyNjY3LDE2LjU2ODg1MTUgTDI3LjUwNTIzNzQsMTYuNTY4ODUxNSBDMjcuODQ1MTYxNCwxNy44MzUzMjkxIDI4Ljk4NTIzNzQsMTguODQ4MzM4OCAzMC41MTI2MjM0LDE4Ljg0ODMzODggQzMxLjU4MjgxMDUsMTguODQ4MzM4OCAzMi43OTE0NzcyLDE4LjQwMzY5MjIgMzMuNDUyMDY3OCwxNy43NjY3ODkzIEwzNS4zMDM1ODI1LDIwLjI3NzU0NDcgQzM0LjA5ODU5NDIsMjEuMzc5Nzg1NCAzMi4yMjY3NDA0LDIyLjAxMjE2MjEgMzAuMTY3NTA2NCwyMi4wMTIxNjIxIEMyNi4yMjIzNTQ0LDIyLjAxMjE2MjEgMjMuNDY2ODI4MSwxOS4zMDc2NDE3IDIzLjQ2NjgyODEsMTUuNDM1NTczOCBDMjMuNDY2ODI4MSwxMS43MDAzNjk5IDI2LjI2MjYsOC44ODM1NTYzMSAyOS45NzA2MDU4LDguODgzNTU2MzEgQzMzLjY4NDAyMTEsOC44ODM1NTYzMSAzNi4yNzcyNjY3LDExLjcwOTIwNjggMzYuMjc3MjY2NywxNS43NTQ3Nzk2IFogTTI5Ljk3MDYwNTgsMTIuMDQ3Mzc5NiBDMjguNDczOTQ1LDEyLjA0NzM3OTYgMjcuNzA2NDY1NSwxMy4wMjIyMzk4IDI3LjQ1Mzc0MDQsMTMuOTg4NDc4NiBMMzIuNTEwODM5OCwxMy45ODg0Nzg2IEMzMi4zMTM5MzkyLDEzLjAyNTA0MTcgMzEuNTY3MDE1MiwxMi4wNDczNzk2IDI5Ljk3MDYwNTgsMTIuMDQ3Mzc5NiBaIi8+PHBhdGggaWQ9IkZpbGwtMyIgZD0iTTQ5LjkzMTQ3ODQsMTUuNzU0Nzc5NiBMNDkuOTMxNDc4NCwxNi41Njg4NTE1IEw0MS4xNTk0NDkxLDE2LjU2ODg1MTUgQzQxLjQ5OTE1NjcsMTcuODM1MzI5MSA0Mi42Mzk0NDkxLDE4Ljg0ODMzODggNDQuMTY2ODM1MSwxOC44NDgzMzg4IEM0NS4yMzcwMjIyLDE4Ljg0ODMzODggNDYuNDQ1Njg4OSwxOC40MDM2OTIyIDQ3LjEwNjI3OTUsMTcuNzY2Nzg5MyBMNDguOTU3Nzk0MiwyMC4yNzc1NDQ3IEM0Ny43NTI4MDU4LDIxLjM3OTc4NTQgNDUuODgwOTUyLDIyLjAxMjE2MjEgNDMuODIxNzE4MSwyMi4wMTIxNjIxIEMzOS44NzY1NjYxLDIyLjAxMjE2MjEgMzcuMTIxMDM5OCwxOS4zMDc2NDE3IDM3LjEyMTAzOTgsMTUuNDM1NTczOCBDMzcuMTIxMDM5OCwxMS43MDAzNjk5IDM5LjkxNjgxMTcsOC44ODM1NTYzMSA0My42MjQ4MTc1LDguODgzNTU2MzEgQzQ3LjMzODIzMjcsOC44ODM1NTYzMSA0OS45MzE0Nzg0LDExLjcwOTIwNjggNDkuOTMxNDc4NCwxNS43NTQ3Nzk2IFogTTQzLjYyNDgxNzUsMTIuMDQ3Mzc5NiBDNDIuMTI4MTU2NywxMi4wNDczNzk2IDQxLjM2MDY3NzIsMTMuMDIyMjM5OCA0MS4xMDc5NTIsMTMuOTg4NDc4NiBMNDYuMTY1MDUxNSwxMy45ODg0Nzg2IEM0NS45NjgxNTA5LDEzLjAyNTA0MTcgNDUuMjIxMjI2OSwxMi4wNDczNzk2IDQzLjYyNDgxNzUsMTIuMDQ3Mzc5NiBaIi8+PHBvbHlnb24gaWQ9IkZpbGwtNSIgcG9pbnRzPSI1MS40ODEgMjEuNzE4IDU1LjI5OCAyMS43MTggNTUuMjk4IDQuNjYyIDUxLjQ4MSA0LjY2MiIvPjxwYXRoIGlkPSJGaWxsLTciIGQ9Ik03Ni45MzcxNTA5LDguODgzNTEzMiBDODAuNzE1NDc4NCw4Ljg4MzUxMzIgODMuNDU3ODA1OCwxMS42MzkxMTUxIDgzLjQ1NzgwNTgsMTUuNDM1NTMwNyBDODMuNDU3ODA1OCwxOS4yNDYxNzE1IDgwLjcxNTQ3ODQsMjIuMDEyMTE5IDc2LjkzNzE1MDksMjIuMDEyMTE5IEM3My4xNzI2NzEzLDIyLjAxMjExOSA3MC40NDA1MTM1LDE5LjI0NjE3MTUgNzAuNDQwNTEzNSwxNS40MzU1MzA3IEM3MC40NDA1MTM1LDExLjYzOTExNTEgNzMuMTcyNjcxMyw4Ljg4MzUxMzIgNzYuOTM3MTUwOSw4Ljg4MzUxMzIgWiBNNzYuOTE3ODkzNiwxOC41NTM4NzYzIEM3OC43MzA4OTM2LDE4LjU1Mzg3NjMgNzkuNTU2NTc3OCwxNi45Mzc1ODcgNzkuNTU2NTc3OCwxNS40MzU1MzA3IEM3OS41NTY1Nzc4LDEzLjk0NTc1OTggNzguNzMwODkzNiwxMi4zNDE5NzE1IDc2LjkxNzg5MzYsMTIuMzQxOTcxNSBDNzUuMTExMzg0OCwxMi4zNDE5NzE1IDc0LjMwMjc5NDIsMTMuODk1NTQwNCA3NC4zMDI3OTQyLDE1LjQzNTUzMDcgQzc0LjMwMjc5NDIsMTYuOTg3ODA2NCA3NS4xMTEzODQ4LDE4LjU1Mzg3NjMgNzYuOTE3ODkzNiwxOC41NTM4NzYzIFoiLz48cGF0aCBpZD0iRmlsbC04IiBkPSJNOTAuNzk2NjgwMSw4Ljg4MzUxMzIgQzk0LjU3NTAwNzYsOC44ODM1MTMyIDk3LjMxNzMzNTEsMTEuNjM5MTE1MSA5Ny4zMTczMzUxLDE1LjQzNTUzMDcgQzk3LjMxNzMzNTEsMTkuMjQ2MTcxNSA5NC41NzUwMDc2LDIyLjAxMjExOSA5MC43OTY2ODAxLDIyLjAxMjExOSBDODcuMDMyMjAwNiwyMi4wMTIxMTkgODQuMzAwMDQyNywxOS4yNDYxNzE1IDg0LjMwMDA0MjcsMTUuNDM1NTMwNyBDODQuMzAwMDQyNywxMS42MzkxMTUxIDg3LjAzMjIwMDYsOC44ODM1MTMyIDkwLjc5NjY4MDEsOC44ODM1MTMyIFogTTkwLjc3NzQyMjgsMTguNTUzODc2MyBDOTIuNTkwNDIyOCwxOC41NTM4NzYzIDkzLjQxNjEwNywxNi45Mzc1ODcgOTMuNDE2MTA3LDE1LjQzNTUzMDcgQzkzLjQxNjEwNywxMy45NDU3NTk4IDkyLjU5MDQyMjgsMTIuMzQxOTcxNSA5MC43Nzc0MjI4LDEyLjM0MTk3MTUgQzg4Ljk3MDkxNCwxMi4zNDE5NzE1IDg4LjE2MjMyMzQsMTMuODk1NTQwNCA4OC4xNjIzMjM0LDE1LjQzNTUzMDcgQzg4LjE2MjMyMzQsMTYuOTg3ODA2NCA4OC45NzA5MTQsMTguNTUzODc2MyA5MC43Nzc0MjI4LDE4LjU1Mzg3NjMgWiIvPjxwYXRoIGlkPSJGaWxsLTkiIGQ9Ik0xMDcuMDUzODA5LDQuNjYxNzg0NDcgTDExMC44OTUzMTgsNC42NjE3ODQ0NyBMMTEwLjg5NTMxOCwyMS43MTc2MzUgTDEwNy4wNTM4MDksMjEuNzE3NjM1IEwxMDcuMDUzODA5LDIwLjczNTIzMTEgQzEwNi4xMjU5OTYsMjEuNTY0MzkwMyAxMDQuOTcxMjA3LDIyLjAxMjI2OTkgMTAzLjcyNjQwNiwyMi4wMTIyNjk5IEMxMDAuMzY2OTc5LDIyLjAxMjI2OTkgOTguMTA5NzYyNiwxOS4zNzg4NzU3IDk4LjEwOTc2MjYsMTUuNDYwMjUyNCBDOTguMTA5NzYyNiwxMS41MjY3NTczIDEwMC4zNjY5NzksOC44ODM2NjQwOCAxMDMuNzI2NDA2LDguODgzNjY0MDggQzEwNC45ODcwMDIsOC44ODM2NjQwOCAxMDYuMTQxMzU5LDkuMzMzMjY3OTYgMTA3LjA1MzgwOSwxMC4xNjU2NjAyIEwxMDcuMDUzODA5LDQuNjYxNzg0NDcgWiBNMTA3LjA1MzgwOSwxMy40NjAzMTI2IEMxMDYuNTQ3MDYxLDEyLjc5NzU0NTYgMTA1LjU5MDkwMywxMi4zNDE5MDY4IDEwNC42ODczMjQsMTIuMzQxOTA2OCBDMTAzLjA5NDgwOSwxMi4zNDE5MDY4IDEwMi4wMjQ4MzksMTMuNTk1MjM2OSAxMDIuMDI0ODM5LDE1LjQ2MDI1MjQgQzEwMi4wMjQ4MzksMTcuMzEwNjExNyAxMDMuMDk0ODA5LDE4LjU1MzgxMTcgMTA0LjY4NzMyNCwxOC41NTM4MTE3IEMxMDUuNTkwOTAzLDE4LjU1MzgxMTcgMTA2LjU0NzA2MSwxOC4wOTgxNzI4IDEwNy4wNTM4MDksMTcuNDM1NDA1OCBMMTA3LjA1MzgwOSwxMy40NjAzMTI2IFoiLz48cGF0aCBpZD0iRmlsbC0xMCIgZD0iTTE5LjQ3Mjg4MzYsMTUuNzI4MzMzNiBDMjEuMDU1NDQ1LDE1LjEwMDY5ODYgMjIuNjgyNzk1OSwxMy40ODU3MDI1IDIyLjY4Mjc5NTksMTAuNzM4NzIxOSBDMjIuNjgyNzk1OSw3LjM4ODAzMDY4IDIwLjMyMzQ1MDksNS4xMzYzNDcxOCAxNi44MTIzNDU2LDUuMTM2MzQ3MTggTDE0LjkxNzk4ODksNS4xMzYzNDcxOCBMMTQuOTE3OTg4OSw5LjAwMjE2NDY2IEwxNi4xNzE2NjE0LDkuMDAyMTY0NjYgQzE3LjExMTU5MTIsOS4wMDIxNjQ2NiAxOC4wNjI3NzI1LDkuNTgxOTUxMDcgMTguMDYyNzcyNSwxMC42ODk1ODAyIEMxOC4wNjI3NzI1LDExLjc5NzIwOTMgMTcuMTExNTkxMiwxMi4zNzY5OTU3IDE2LjE3MTY2MTQsMTIuMzc2OTk1NyBMMTIuOTc0NzMxNiwxMi4zNzY5OTU3IEwxMi45NzQ3MzE2LDkuOTcxODUyMDQgTDguNDI4NDkxODEsMTIuNDI2MTM3NSBMOC40Mjg0OTE4MSwyMS44MTQxNTExIEwxMi45NzQ3MzE2LDIxLjgxNDE1MTEgTDEyLjk3NDczMTYsMTYuMjY3Mzg0MSBMMTQuODkzMzIyMiwxNi4yNjczODQxIEwxNy42NTI5NTk2LDIxLjgxNDE1MTEgTDIyLjg2NDMzMzksMjEuODE0MTUxMSBMMTkuNDcyODgzNiwxNS43MjgzMzM2IFoiLz48cGF0aCBpZD0iRmlsbC0xMSIgZD0iTTY1LjY3Mzc2NjcsOS4zODkwOTEyNiBMNjkuNTE1Mjc1NCw5LjM4OTA5MTI2IEw2OS41MTUyNzU0LDIwLjc3NjM5ODEgQzY5LjUxNTI3NTQsMjYuMTU4MDY2IDY0Ljc3NzU0NDQsMjYuNzM5MzYxMiA2Mi43NDA1OTcxLDI2LjczOTM2MTIgQzYxLjk3MDczNzQsMjYuNzM5MzYxMiA2MS4yODY3Nzg0LDI2LjY3MzgzODggNjAuNjUwMjA1MywyNi41Mzg2OTkgTDYwLjM3OTk1MzgsMjYuNDgxMTUxNSBMNjAuMzU4NTMyNywyMy4yMDg5MTQ2IEw2MC43NzM1Mzg2LDIzLjI5Mjc1NzMgQzYwLjc4MzQ5MTgsMjMuMjk0OTEyNiA2MS43OTM1MjY5LDIzLjQ5NzA4MzUgNjIuNzQyNTQ0NCwyMy41MDE4MjUyIEM2My42MjI1Mzg2LDIzLjUwMTgyNTIgNjUuNjczNzY2NywyMy4yNDM2MTU1IDY1LjY3Mzc2NjcsMjAuODQ5Njc5NiBMNjUuNjczNzY2NywyMC41MjE0MjE0IEM2NC43MzUzNTE1LDIxLjM4NzAwNTggNjMuNTgwMTI5MiwyMS44NTQ5MzAxIDYyLjM0NjM2MzIsMjEuODU0OTMwMSBDNTguOTQ5NTAzNSwyMS44NTQ5MzAxIDU2Ljc1NDM4NjUsMTkuMzUwNjQwOCA1Ni43NTQzODY1LDE1LjQ3NDQ3NzcgQzU2Ljc1NDM4NjUsMTEuNTk4OTYxMiA1OC45NDk1MDM1LDkuMDk0NDU2MzEgNjIuMzQ2MzYzMiw5LjA5NDQ1NjMxIEM2My42MTE5MzYzLDkuMDk0NDU2MzEgNjQuNzQ3NDY4NCw5LjUzNjk0NzU3IDY1LjY3Mzc2NjcsMTAuMzgzMTM0IEw2NS42NzM3NjY3LDkuMzg5MDkxMjYgWiBNNjUuNjczNzY2NywxMy42Njc2NTYzIEM2NS4xOTk0NzQzLDEzLjAyNjQ0MjcgNjQuMjEzODg5NSwxMi41NTI5MTQ2IDYzLjMzMTk0OCwxMi41NTI5MTQ2IEM2MS42ODk2NjczLDEyLjU1MjkxNDYgNjAuNjY5NDYyNiwxMy42NzIzOTgxIDYwLjY2OTQ2MjYsMTUuNDc0NDc3NyBDNjAuNjY5NDYyNiwxNy4yNzY5ODgzIDYxLjY4OTY2NzMsMTguMzk2Njg3NCA2My4zMzE5NDgsMTguMzk2Njg3NCBDNjQuMTk5MzkyNCwxOC4zOTY2ODc0IDY1LjE4NDc2MDgsMTcuOTIxNjUwNSA2NS42NzM3NjY3LDE3LjI3OTE0MzcgTDY1LjY3Mzc2NjcsMTMuNjY3NjU2MyBaIi8+PHBhdGggaWQ9IkZpbGwtMTIiIGQ9Ik02LjQ5MTIyODA2ZS0wNSwwLjAwMDE3MjQyNzE4NCBMMTEuOTkwMjI4Nyw2Ljg5NTc1MTA3IEw2LjQ5MTIyODA2ZS0wNSwxMy43OTEzMjk3IEw2LjQ5MTIyODA2ZS0wNSwwLjAwMDE3MjQyNzE4NCBaIE0xLjYyODcxNDA0LDYuMzU0OTc2MzEgTDIuNzI2MzgwNyw2LjM1NDk3NjMxIEwyLjcyNjM4MDcsOS4wOTE2MTEyNiBMNy41NzEwMDA1OCw2LjIyNzM4MDE5IEwxLjYyODcxNDA0LDIuODA5ODczNCBMMS42Mjg3MTQwNCw2LjM1NDk3NjMxIFoiLz48L2c+PC9nPjwvZz48L3N2Zz4=); 
+            }
+            @media screen and (max-width: 768px) {
+              .css8 {
+                margin-right: 18px;
+              }
+            }
+            @media screen and (max-width: 450px) {
+              .css8 {
+                width: 96px;
+                height: 24px;
+              }
+            }
+          </style>
+          <style data-emotion-css="css7">
+            .css7 {
+              align-self: baseline;
+              background-image: linear-gradient(107deg, #1a303c, #18372c);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              border-radius: 8px;
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+              box-sizing: border-box;
+              flex-grow: 1;
+              max-height: 44px;
+              overflow: hidden;
+              position: relative;
+              top: unset;
+              transition: max-height 160ms, width 150ms ease-in-out, box-shadow 200ms;
+              width: 100%;
+              width: 288px;
+              will-change: height, max-height;
+              z-index: 3;
+            }
+            .css7 .c07 {
+              opacity: 0.8;
+            }
+            @media screen and (max-width: 1025px) {
+              .css7 {
+                width: 270px;
+                width: 100%;
+              }
+            }
+            @media screen and (max-width: 768px) {
+              .css7 input {
+                z-index: 1;
+              }
+              .css7 .c07 {
+                margin-right: 8px;
+                margin-right: 16px;
+                margin-top: -11px;
+                margin-top: 0;
+              }
+            }
+          </style>
+          <style data-emotion-css="css07">
+            .css07 {
+              width: 100%;
+              height: 42px;
+              display: flex;
+              align-items: center;
+              padding-top: 1px;
+              box-sizing: border-box;
+            }
+            .css07 form {
+              flex-grow: 1;
+              height: 100%;
+            }
+          </style>
+        
+          <style data-emotion-css="cssg">
+            .cssg {
+              height: 100%;
+              width: calc(100% - 16px);
+              font-size: 16px;
+              color: rgba(255, 255, 255, 0.8);
+              -webkit-letter-spacing: 0.2px;
+              -moz-letter-spacing: 0.2px;
+              -ms-letter-spacing: 0.2px;
+              letter-spacing: 0.2px;
+              background: none;
+              outline: none;
+              border: none;
+              box-sizing: border-box;
+              margin-left: 14px;
+              overflow: hidden;
+              border-radius: 4px;
+              -webkit-transition: color 110ms;
+              transition: color 110ms;
+            }
+            @media screen and (max-width: 1025px) {
+              .cssg {
+                margin-left: 12px;
+              }
+            }
+          </style>
+        
+           <style data-emotion-css="css6">
+            .css6 {
+              display: flex;
+              align-items: center;
+              margin-left: 30px;
+            }
+            .css6 a {
+              font-family: ProximaNova-Bold, Arial, sans-serif;
+              text-decoration: none;
+              border-radius: 4px;
+              cursor: pointer;
+              transition: background-color 100ms;
+              padding: 8px 7px;
+              margin-right: 13px;
+              color: rgba(255, 255, 255, 0.8);
+              white-space: nowrap;
+            }
+            .css6 a:hover {
+              background-color: rgba(255, 255, 255, 0.16);
+              color: white;
+            }
+          </style> 
+          <style data-emotion-css="css06">
+            .css06 {
+              display: flex;
+            }
+          </style>
+          <style data-emotion-css="css006">
+            .css006 {
+              white-space: nowrap;
+            }
+            .css006 a {
+              margin-right: 0px;
+              font-size: 18px;
+            }
+            @media screen and (max-width: 550px) {
+              .css006 a {
+                font-size: 16px;
+              }
+            }
+          </style>
+          <style data-emotion-css="csss">
+            .csss {
+              font-family: ProximaNova-Bold, Arial, sans-serif;
+              color: rgba(255, 255, 255, 0.8);
+              margin: 0 4px;
+            }
+          </style>
+         
+          <style data-emotion-css="css5">
+            .css5 {
+              position: relative;
+              margin-left: 150px;
+              white-space: nowrap;
+            }
+            .css5 a,
+            .css5 span {
+              font-size: 18px;
+            }
+            @media screen and (max-width: 550px) {
+              .css5 a,
+              .css5 span {
+                font-size: 16px;
+              }
+            }
+            @media screen and (max-width: 900px) {
+              .css5 {
+                margin-left: -4px;
+              }
+            }
+            @media screen and (max-width: 450px) {
+              .css5 {
+                overflow-x: auto;
+                overflow-y: hidden;
+                scrollbar-width: none;
+              }
+              .css5:-webkit-scrollbar {
+                display: none;
+              }
+            }
+          </style>
+          <style data-emotion-css="css4">
+            .css4 {
+              position: relative;
+              display: inline-block;
+              position: static;
+            }
+          </style>
+          <style data-emotion-css="css04">
+            .css04 {
+              font-family: ProximaNova-Bold, Arial, sans-serif;
+              position: relative;
+              border-radius: 4px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
+              -webkit-transition: color 100ms, background-color 100ms;
+              transition: color 100ms, background-color 100ms;
+              padding: 8px 14px;
+              font-size: 20px;
+              color: rgba(255, 255, 255, 0.8);
+              -webkit-text-decoration: none;
+              text-decoration: none;
+              font-size: inherit;
+              margin-right: 4px;
+            }
+            .css04:hover {
+              background-color: rgba(255, 255, 255, 0.16);
+              color: white;
+            }
+            @media screen and (max-width: 1025px) {
+              .css04 {
+                padding: 8px 12px;
+              }
+            }
+            @media screen and (max-width: 768px) {
+              .css04 {
+                margin-right: 2px;
+                font-size: 14px;
+              }
+            }
+          </style>
+          <style data-emotion-css="css02">
+            .css02 {
+              font-size: inherit;
+              font-family: inherit;
+              color: inherit;
+            }
+          </style>
+          <style data-emotion-css="css004">
+            .css004 {
+              opacity: 0;
+              position: absolute;
+              margin-top: 6px;
+              background-image: linear-gradient(263deg, #494746, #353c40);
+              pointer-events: none;
+              border-radius: 4px;
+              z-index: 30;
+              display: flex;
+              box-sizing: border-box;
+              overflow: hidden;
+              flex-direction: column;
+              padding: 18px 28px 18px 36px;
+              box-shadow: 4px 22px 54px 0 rgba(0, 0, 0, 0.35);
+              width: 680px;
+            }
+        
+            @media screen and (max-width: 1150px) {
+              .css004 {
+                left: 0;
+              }
+            }
+            @media screen and (max-width: 768px) {
+              .css004 {
+                margin-top: 0;
+                width: 100%;
+                top: 108px;
+                height: calc(100% - 108px);
+                overflow: visible;
+                overflow-y: auto;
+                position: fixed;
+                border-radius: 0;
+                box-shadow: inset 0 1px 12px 0 rgba(0, 0, 0, 0.5);
+              }
+            }
+          </style>
+          <style data-emotion-css="css03">
+            .css03 {
+              color: white;
+              margin-left: 8px;
+              margin-right: 12px;
+            }
+          </style>
+          <style data-emotion-css="css3">
+            .css3 {
+              flex-grow: 1;
+              min-width: 16px;
+            }
+            @media screen and (max-width: 768px) {
+              .css3 {
+                min-width: 0;
+                display: none;
+              }
+            }
+          </style>
+          <!-- style for navbar ends -->
+
+    <!-- main boby sty.. -->
+
+    <style data-emotion-css="csskit">
+        .csskit {
+          height: 42px;
+          position: relative;
+          width: 100%;
+        }
+        @media screen and (min-width: 1025px) {
+          .csskit {
+            height: 42px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .csskit {
+            height: 34px;
+          }
+        }
+      </style>
+      <style data-emotion-css="css1k">
+        .css1k {
+          margin-left: 64px;
+          max-width: calc(100% - 64px);
+          display: inline-block;
+        }
+        @media screen and (min-width: 1025px) {
+          .css1k {
+            margin-left: 64px;
+            max-width: calc(100% - 64px);
+          }
+        }
+        @media screen and (max-width: 1025px) {
+          .css1k {
+            margin-left: 4vw;
+            max-width: calc(100% - 4vw);
+          }
+        }
+        @media screen and (max-width: 768px) {
+          .css1k {
+            margin-left: 40px;
+            max-width: calc(100% - 40px);
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css1k {
+            margin-left: 18px;
+            max-width: calc(100% - 18px);
+          }
+        }
+      </style>
+      <style data-emotion-css="cssarr">
+        .cssarr {
+          padding-top: 3px;
+          opacity: 0.8;
+          -webkit-transition: opacity ease-in-out 100ms;
+          transition: opacity ease-in-out 100ms;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-text-decoration: none;
+          text-decoration: none;
+          color: white;
+          font-size: 18px;
+        }
+        @media screen and (min-width: 1025px) {
+          .cssarr {
+            padding-top: 3px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .cssarr {
+            padding-top: 6px;
+          }
+        }
+        .cssarr:hover {
+          opacity: 1;
+        }
+        .cssarr span {
+          margin-left: 8px;
+          font-size: 17px;
+        }
+        @media screen and (max-width: 430px) {
+          .cssarr {
+            font-size: 14px;
+          }
+          .cssarr span {
+            font-size: 12px;
+          }
+        }
+      </style>
+    <style data-emotion-css="cssarrow">
+        .cssarrow {
+          text-transform: uppercase;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 20px;
+        }
+      </style>
+      <style data-emotion-css="cssne">
+        .cssne {
+          position: relative;
+          top: 1px;
+          margin-right: 7px;
+          font-size: 1em;
+          -webkit-transform: none;
+          -ms-transform: none;
+          transform: none;
+          display: inline;
+        }
+      </style>
+      <style data-emotion-css="cssnew">
+        .cssnew {
+          overflow: hidden;
+          white-space: nowrap;
+          min-height: 360px;
+        }
+        @media screen and (min-width: 1025px) {
+          .cssnew {
+            min-height: 360px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .cssnew {
+            min-height: 228px;
+          }
+        }
+      </style>
+      <style data-emotion-css="csshsv">
+        .csshsv {
+          outline: none;
+          width: 100%;
+          overflow: auto;
+          scrollbar-width: none;
+        }
+        @-moz-document url-prefix() {
+          .csshsv {
+            overflow: hidden;
+          }
+        }
+      </style>
+      <style data-emotion-css="css-kj">
+        .css-kj {
+          display: flex;
+          left: 64px;
+          padding-right: 64px;
+          position: relative;
+          width: fit-content;
+        }
+        @media screen and (min-width: 1025px) {
+          .css-kj {
+            left: 64px;
+            padding-right: 64px;
+          }
+        }
+        @media screen and (max-width: 1025px) {
+          .css-kj {
+            left: 4vw;
+            padding-right: 4vw;
+          }
+        }
+        @media screen and (max-width: 768px) {
+          .css-kj {
+            left: 40px;
+            padding-right: 40px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css-kj {
+            left: 18px;
+            padding-right: 18px;
+          }
+        }
+      </style>
+      <style data-emotion-css="css-hg">
+        .css-hg {
+          display: inline-block;
+        }
+      </style>
+
+
+      <style data-emotion-css="cssid">
+        .cssid {
+          width: 160px;
+          height: 315px;
+          margin-right: 24px;
+          display: inline-block;
+          vertical-align: top;
+          contain: layout style;
+        }
+        @media screen and (min-width: 1025px) {
+          .cssid {
+            width: 160px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .cssid {
+            width: 110px;
+          }
+        }
+        @media screen and (min-width: 1025px) {
+          .cssid {
+            height: 315px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .cssid {
+            height: 208px;
+          }
+        }
+        @media screen and (min-width: 1025px) {
+          .cssid {
+            margin-right: 24px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .cssid {
+            margin-right: 18px;
+          }
+        }
+        .cssid a {
+          -webkit-text-decoration: none;
+          text-decoration: none;
+          display: block;
+        }
+        .cssid:hover{
+          opacity: 1;
+        }
+        .cssid:hover a > span {
+          color: white;
+        }
+      </style>
+      <style data-emotion-css="csstr">
+        .csstr {
+          position: relative;
+          height: 240px;
+          margin-bottom: 9px;
+          overflow: hidden;
+          border-radius: 6px;
+        }
+        @media screen and (max-width: 430px) {
+          .csstr {
+            margin-bottom: 5px;
+            height: 165px;
+          }
+        }
+      </style>
+      <style data-emotion-css="cssrits">
+        .cssrits {
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          position: absolute;
+          transition: opacity 370ms cubic-bezier(0.4, 0, 0.2, 1);
+          object-fit: cover;
+        }
+      </style>
+      <style data-emotion-css="cssri">
+        .cssri {
+          contain: strict;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #2b3239cc;
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          position: absolute;
+          transition: opacity 370ms cubic-bezier(0.4, 0, 0.2, 1);
+          object-fit: cover;
+        }
+      </style>
+      <style data-emotion-css="cssrit">
+        .cssrit {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <style data-emotion-css="cssrih">
+        .cssrih {
+          object-fit: cover;
+          object-position: center;
+          width: 100%;
+          height: 100%;
+          transition-duration: 350ms;
+          transition-property: opacity;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cssrih:-moz-loading {
+          visibility: hidden;
+        }
+      </style>
+      <style data-emotion-css="cssrich">
+        .cssrich {
+          align-items: center;
+          -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+          background-color: rgba(0, 0, 0, 0.01);
+          box-sizing: border-box;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          gap: 12px;
+          height: 100%;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          left: 0;
+          opacity: 0;
+          padding: 8px;
+          pointer-events: none;
+          position: absolute;
+          text-align: center;
+          top: 0;
+          -webkit-transition: opacity 120ms;
+          transition: opacity 120ms;
+          white-space: normal;
+          width: 100%;
+          z-index: 2;
+          background-color: rgba(0, 0, 0, 0.4);
+          -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+        }
+      </style>
+      <style data-emotion-css="css-r ">
+        .css-r {
+          font-family: ProximaNova-Bold, Arial, sans-serif;
+          font-size: 15px;
+          color: white;
+          line-height: 1.1;
+        }
+      </style>
+      <style data-emotion-css="css-anit">
+        .css-anit {
+          background: #31373b;
+          border: none;
+          border-radius: 16px;
+          color: #fff;
+          cursor: pointer;
+          line-height: 1;
+          outline: none;
+          transition: background 100ms, opacity 100ms;
+          user-select: none;
+          font-size: 1rem;
+          padding: 8px 32px;
+          color: #fff;
+          font-size: 16px;
+          width: 136px;
+          padding: 8px 27px;
+          text-align: left;
+        }
+        .css-anit:hover {
+          background: #3b4045;
+        }
+        .css-anit img,
+        .css-anit amp-img {
+          height: 11px;
+          margin-right: 8px;
+          position: relative;
+          top: 1px;
+          display: inline-block;
+        }
+        .css-anit:disabled {
+          opacity: 0.45;
+          pointer-events: none;
+        }
+        .css-anit img {
+          width: 16px;
+          height: 16px;
+          object-fit: contain;
+        }
+        .css-anit amp-img img {
+          margin-right: 0;
+        }
+        .css-anit span {
+          vertical-align: top;
+        }
+        @media screen and (max-width: 430px) {
+          .css-anit span {
+            vertical-align: text-top;
+          }
+        }
+      </style>
+    <style data-emotion-css="css-mah">
+        .css-mah {
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(
+            to bottom,
+            rgba(8, 17, 24, 0.85),
+            rgba(8, 17, 24, 0) 51%,
+            rgba(8, 17, 24, 0.85)
+          );
+          transition: opacity ease-in-out 100ms;
+          display: flex;
+        }
+        @media screen and (max-width: 430px) {
+          .css-mah {
+            display: none;
+          }
+        }
+      </style>
+      <style data-emotion-css="css-mahes">
+        .css-mahes {
+          position: absolute;
+          bottom: 7px;
+          text-align: center;
+        }
+        .css-mahes:first-of-type {
+          left: 20px;
+        }
+        .css-mahes:last-child {
+          right: 20px;
+        }
+        .css-mahes img {
+          opacity: 0.85;
+          margin-bottom: 3px;
+        }
+        .css-mahes span {
+          display: block;
+          color: #fff;
+          opacity: 0.8;
+          font-size: 14px;
+        }
+      </style>
+      <style data-emotion-css="css-mmarr">
+        .css-mmarr {
+          font-size: 17px;
+          font-weight: bold;
+        }
+      </style>
+     
+      <style data-emotion-css="css-marr">
+        .css-marr {
+          background-color: rgba(8, 17, 24, 0.7);
+          background-position: 6px center;
+          background-repeat: no-repeat;
+          background-size: 11px;
+          border-color: #9d9fa2;
+          border-radius: 16px;
+          border: 1px solid;
+          color: #fff;
+          cursor: pointer;
+          display: block;
+          height: 24px;
+          margin: 0 0 5px 5px;
+          outline: none;
+          overflow: hidden;
+          position: relative;
+          text-align: left;
+          top: 5px;
+          transition: background-color 110ms, opacity 110ms, width 110ms;
+          white-space: nowrap;
+          width: 24px;
+          will-change: width;
+          z-index: 2;
+          background-image: url(https://public.rgstatic.com/web/ba2e331ed3b802cfd691777f4809400a0dddaabe/963ee3f2.svg);
+        }
+        .css-marr:hover {
+          background-color: #00f699;
+          border-color: #00f699;
+        }
+        @media screen and (max-width: 430px) {
+          .css-marr {
+            display: none;
+          }
+        }
+        .css-marr span {
+          padding-right: 5px;
+          margin-left: 19px;
+          opacity: 0;
+          transition: opacity ease-in-out 100ms;
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 13px;
+        }
+        .css-marr:active {
+          opacity: 1;
+        }
+        .css-marr:first-of-type {
+          margin-top: 0;
+        }
+        .css-marr:disabled {
+          pointer-events: none;
+        }
+      </style>
+
+      <style data-emotion-css="css-8vh">
+        .css-8vh {
+          background-color: rgba(8, 17, 24, 0.7);
+          background-position: 6px center;
+          background-repeat: no-repeat;
+          background-size: 11px;
+          border-color: #9d9fa2;
+          border-radius: 16px;
+          border: 1px solid;
+          color: #fff;
+          cursor: pointer;
+          display: block;
+          height: 24px;
+          margin: 0 0 5px 5px;
+          outline: none;
+          overflow: hidden;
+          position: relative;
+          text-align: left;
+          top: 5px;
+          transition: background-color 110ms, opacity 110ms, width 110ms;
+          white-space: nowrap;
+          width: 24px;
+          will-change: width;
+          z-index: 2;
+          /* background-image: url(https://public.rgstatic.com/web/ba2e331ed3b802cfd691777f4809400a0dddaabe/8e989bbb.svg); */
+        }
+        .css-8vh:hover {
+          background-color: #8300f7;
+          border-color: #8300f7;
+        }
+        @media screen and (max-width: 430px) {
+          .css-8vh {
+            display: none;
+          }
+        }
+        .css-8vh span {
+          padding-right: 5px;
+          margin-left: 19px;
+          opacity: 0;
+          transition: opacity ease-in-out 100ms;
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 13px;
+        }
+        .css-8vh:active {
+          opacity: 1;
+        } 
+      </style>
+
+      <style data-emotion-css="css-7gjgv ">
+        .css-7gjgv {
+           display: flex;
+          justify-content: space-between;
+          max-height: 3.6em;
+          max-width: 160px;
+        }
+        @media screen and (min-width: 1025px) {
+          .css-7gjgv {
+            max-width: 160px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css-7gjgv {
+            max-width: 110px;
+          }
+        }
+        .css-7gjgv p {
+          text-align: left;
+          color: #838383;
+          -webkit-transition: color ease-in-out 100ms;
+          transition: color ease-in-out 100ms;
+          font-size: 14px;
+          line-height: 1.2;
+          overflow: hidden;
+          white-space: normal;
+        }
+        @media screen and (max-width: 430px) {
+          .css-7gjgv p {
+            font-size: 11px;
+          }
+        }
+      </style>
+      <style data-emotion-css="css-d ">
+        .css-d {
+          display: flex;
+          justify-content: space-between;
+          max-height: 3.6em;
+          max-width: 160px;
+        }
+        @media screen and (min-width: 1025px) {
+          .css-d {
+            max-width: 160px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css-d {
+            max-width: 110px;
+          }
+        }
+        .css-d p {
+          text-align: left;
+          color: #838383;
+          -webkit-transition: color ease-in-out 100ms;
+          transition: color ease-in-out 100ms;
+          font-size: 14px;
+          line-height: 1.2;
+          overflow: hidden;
+          white-space: normal;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        @media screen and (max-width: 430px) {
+          .css-d p {
+            font-size: 11px;
+          }
+        }
+      </style>
+     
+      <style data-emotion-css="css-d4ed ">
+        .css-d4ed {
+          width: 56px;
+          height: 28px;
+          display: inline-block;
+          overflow: hidden;
+          border-radius: 3px;
+          flex-shrink: 0;
+          min-width: 48px;
+          width: 48px;
+          height: 24px;
+          margin-left: 4px;
+        }
+        .css-d4ed img {
+          position: relative;
+          width: 100%;
+        }
+        .css-d4ed img::after {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          width: 48px;
+          height: 24px;
+          background-image: linear-gradient(139deg, #00e18c, #00e46a);
+          border-radius: 3px;
+        }
+        .css-d4ed img {
+          width: 48px;
+          height: 24px;
+        }
+        @media screen and (max-width: 430px) {
+          .css-d4ed {
+            display: none;
+          }
+          .css-d4ed [data-promoted="true"] {
+            display: block;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css-d4ed {
+            display: block;
+          }
+        }
+      </style>
+   
+      <style data-emotion-css="css-cssaaaa">
+        .css-cssaaaa {
+          height: 66px;
+          position: relative;
+          width: 100%;
+        }
+        @media screen and (min-width: 1025px) {
+          .css-cssaaaa {
+            height: 66px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          .css-cssaaaa {
+            height: 34px;
+          }
+        }
+      </style>
+    
+  <style data-emotion-css="cssne">
+    .cssne {
+      position: relative;
+      top: 1px;
+      margin-right: 7px;
+      font-size: 1em;
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none;
+      display: inline;
+    }
+  </style>
+
+    <style data-emotion-css="css-csshsv">
+      .css-csshsv {
+        outline: none;
+        width: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+      }
+      .css-csshsv::-webkit-scrollbar {
+        display: none;
+      }
+      @-moz-document url-prefix() {
+        .css-csshsv {
+          overflow: hidden;
+        }
+      }
+    </style>
+      
+
+      <style data-emotion-css="cssrich">
+        .cssrich {
+          position: absolute;
+          z-index: 1;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+      </style>
+
+
+    <style data-emotion-css="css-marr">
+      .css-marr {
+        background-color: rgba(8, 17, 24, 0.7);
+        background-position: 6px center;
+        background-repeat: no-repeat;
+        background-size: 11px;
+        border-color: #9d9fa2;
+        border-radius: 16px;
+        border: 1px solid;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        height: 24px;
+        margin: 0 0 5px 5px;
+        outline: none;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        top: 5px;
+        transition: background-color 110ms, opacity 110ms, width 110ms;
+        white-space: nowrap;
+        width: 24px;
+        will-change: width;
+        z-index: 2;
+        background-image: url(https://public.rgstatic.com/web/ba2e331ed3b802cfd691777f4809400a0dddaabe/963ee3f2.svg);
+      }
+      .css-marr:hover {
+        background-color: #00f699;
+        border-color: #00f699;
+      }
+      @media screen and (max-width: 430px) {
+        .css-marr {
+          display: none;
+        }
+      }
+      .css-marr span {
+        padding-right: 5px;
+        margin-left: 19px;
+        opacity: 0;
+        -webkit-transition: opacity ease-in-out 100ms;
+        transition: opacity ease-in-out 100ms;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 13px;
+      }
+      .css-marr:active {
+        opacity: 1;
+      }
+      .css-marr:first-of-type {
+        margin-top: 0;
+      }
+      .css-marr:disabled {
+        pointer-events: none;
+      }
+    </style>
+   
+    <style data-emotion-css="css-8vh">
+      .css-8vh {
+        background-color: rgba(8, 17, 24, 0.7);
+        background-position: 6px center;
+        background-repeat: no-repeat;
+        background-size: 11px;
+        border-color: #9d9fa2;
+        border-radius: 16px;
+        border: 1px solid;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        height: 24px;
+        margin: 0 0 5px 5px;
+        outline: none;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        top: 5px;
+        transition: background-color 110ms, opacity 110ms, width 110ms;
+        white-space: nowrap;
+        width: 24px;
+        will-change: width;
+        z-index: 2;
+        background-image: url(https://public.rgstatic.com/web/ba2e331ed3b802cfd691777f4809400a0dddaabe/8e989bbb.svg);
+      }
+      .css-8vh:hover {
+        background-color: #8300f7;
+        border-color: #8300f7;
+      }
+      @media screen and (max-width: 430px) {
+        .css-8vh {
+          display: none;
+        }
+      }
+      .css-8vh span {
+        padding-right: 5px;
+        margin-left: 19px;
+        opacity: 0;
+        transition: opacity ease-in-out 100ms;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 13px;
+      }
+      .css-8vh:active {
+        opacity: 1;
+      }
+      .css-8vh:first-of-type {
+        margin-top: 0;
+      }
+      .css-8vh:disabled {
+        pointer-events: none;
+      }
+    </style>
+    
+
+   <style>
+      section .container{
+        background-image: url("https://img.rgstatic.com/creatives/angelstudios_0623/quad-1051.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: rgba(209, 188, 188, 0.9); /* Light color for text */
+            margin-bottom: 60px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 200px;
+        }
+
+        .poems {
+            background-color: rgba(33, 29, 29, 0.5); /* Semi-transparent background for poems */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .poem {
+            margin-bottom: 20px;
+        }
+
+
+        .poem p {
+            font-size: 18px;
+        }
+      
+   </style>
+
+
+<style data-emotion-css="p0bt98">
+    .cssfoot {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      flex-flow: row wrap;
+    }
+    .cssfoot img {
+      width: 129px;
+      min-width: 129px;
+      height: 32px;
+      margin-right: 24px;
+      -webkit-transition: filter 80ms;
+      transition: filter 80ms;
+    }
+    .cssfoot img:hover {
+      -webkit-filter: brightness(1.1);
+      filter: brightness(1.1);
+    }
+    @media screen and (max-width: 430px) {
+      .cssfoot {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+      .cssfoot img {
+        margin: 0 0 8px;
+      }
+    }
+  </style>
+
+
+<style data-emotion-css="j1p8nv">
+    .cssfooter {
+      padding: 20px 94px 20px 64px;
+      background-image: linear-gradient( 125deg,
+       rgba(134, 121, 249, 0.16),
+        rgba(113, 255, 151, 0.16)
+      );
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 14px;
+    }
+    @media screen and (min-width: 1025px) {
+      .cssfooter {
+        padding: 20px 94px 20px 64px;
+      }
+    }
+    @media screen and (max-width: 1025px) {
+      .cssfooter {
+        padding: 20px 94px 20px 4vw;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .cssfooter {
+        padding: 20px 94px 20px 40px;
+      }
+    }
+    @media screen and (max-width: 430px) {
+      .cssfooter {
+        padding: 20px 94px 20px 18px;
+      }
+    }
+  
+    
+  </style>
+ </head>
+ <body>
+    <!-- <header>
+        <nav>
+            <div class="left"></div>
+            <div class="right">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header> -->
+    <header class="css-0">
+        <div class="css10">
+          <div class="css9">
+            <a alt="Home" class="css-0" href="#">
+              <div alt="Reelgood Icon" class="css8"></div>
+            </a>
+            <div class="css7">
+                <div class="css07 c007">
+                        <form action="#" method="GET">
+                        <input placeholder="Where to Stream Anything..."
+                            title="Search Where to Stream Anything"
+                            class="cssg"/>
+                        </form>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDE2IDE2Ij48dGl0bGU+c2VhcmNoL3NlYXJjaEljb248L3RpdGxlPjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPjxnIGlkPSJTeW1ib2xzIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIj48ZyBpZD0ic2VhcmNoL3NlYXJjaEljb24iIGZpbGw9IiNGRkYiPjxwYXRoIGlkPSJGaWxsLTEiIGQ9Ik04LjMzMjU4Mzc4LDguMzMyNTgzNzggQzYuODUzNjY0ODYsOS44MTE1MDI3IDQuNDQ3MTc4MzgsOS44MTEwNzAyNyAyLjk2ODI1OTQ2LDguMzMyNTgzNzggQzEuNDg5MzQwNTQsNi44NTM2NjQ4NiAxLjQ4OTM0MDU0LDQuNDQ3MTc4MzggMi45NjgyNTk0NiwyLjk2ODI1OTQ2IEM0LjQ0NzE3ODM4LDEuNDg5MzQwNTQgNi44NTM2NjQ4NiwxLjQ4OTM0MDU0IDguMzMyNTgzNzgsMi45NjgyNTk0NiBDOS44MTEwNzAyNyw0LjQ0NzE3ODM4IDkuODExNTAyNyw2Ljg1MzY2NDg2IDguMzMyNTgzNzgsOC4zMzI1ODM3OCBNOS42NDc2MTA4MSwxLjY1MzIzMjQzIEM3LjQ0MzUwMjcsLTAuNTUwODc1Njc2IDMuODU3MzQwNTQsLTAuNTUwODc1Njc2IDEuNjUzMjMyNDMsMS42NTMyMzI0MyBDLTAuNTUwODc1Njc2LDMuODU3MzQwNTQgLTAuNTUwODc1Njc2LDcuNDQzNTAyNyAxLjY1MzIzMjQzLDkuNjQ3NjEwODEgQzMuNTE3MDE2MjIsMTEuNTExODI3IDYuMzY2NzQ1OTUsMTEuNzkyOTA4MSA4LjUzNTgyNzAzLDEwLjUwNDI1OTUgTDEzLjg1NjkwODEsMTUuODI1MzQwNSBMMTUuODI1MzQwNSwxMy44NTY5MDgxIEwxMC41MDQyNTk1LDguNTM1ODI3MDMgQzExLjc5MjkwODEsNi4zNjY3NDU5NSAxMS41MTE4MjcsMy41MTcwMTYyMiA5LjY0NzYxMDgxLDEuNjUzMjMyNDMiLz48L2c+PC9nPjwvc3ZnPg=="
+                        alt="Search Where to Stream Anything" class="cs1 c07" />     
+                </div>
+            </div>
+            <div class="css6">
+              <a class="css06" href="#">
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDE3IDE3Ij48dGl0bGU+R3JvdXAgNDwvdGl0bGU+PGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+PGRlZnM+PGNpcmNsZSBpZD0icGF0aC0xIiBjeD0iMTEuNSIgY3k9IjExLjUiIHI9IjExLjUiLz48L2RlZnM+PGcgaWQ9IlYxLjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiPjxnIGlkPSJjYW5vbmljYWxzRGlyZWN0b3J5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTAwNy4wMDAwMDAsIC0xOC4wMDAwMDApIj48ZyBpZD0iR3JvdXAtOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwNC4wMDAwMDAsIDEzLjAwMDAwMCkiPjxnIGlkPSJHcm91cC00Ij48Y2lyY2xlIGlkPSJPdmFsIiBjeD0iMTEuNSIgY3k9IjEwLjUiIHI9IjQuMTExIiBzdHJva2U9IiNENUQ1RDMiIHN0cm9rZS13aWR0aD0iMiIvPjxnIGlkPSJPdmFsLUNvcHkiPjxtYXNrIGlkPSJtYXNrLTIiIGZpbGw9IiNmZmYiPjx1c2UgeGxpbms6aHJlZj0iI3BhdGgtMSIvPjwvbWFzaz48Y2lyY2xlIGN4PSIxMS41IiBjeT0iMjEuNzIyIiByPSI2LjY2NyIgc3Ryb2tlPSIjRDVENUQzIiBzdHJva2Utd2lkdGg9IjIiIG1hc2s9InVybCgjbWFzay0yKSIvPjwvZz48L2c+PC9nPjwvZz48L2c+PC9zdmc+"
+                    alt="Account Icon"
+                    class="css-1rg3t6d e75bixs2"/>
+              </a>
+              <span class="css006">
+                <a title="Access" class="css-0" href="#">Login</a>
+                   <span class="csss">|</span>
+                <a title="Create" class="css-0" href="#">Sign Up</a>
+              </span>
+            </div>
+          </div>
+          <div class="css5">
+            <div class="css4" tabindex="0" role="button">
+              <a class="css04" href="#">
+                <span class="css02">TV Shows</span></a>
+              <div class="css004" aria-hidden="true"></div>
+            </div>
+            <div class="css4" tabindex="0" role="button">
+              <a
+                class="css04"
+                href="#"
+                ><span class="css02">Movies</span></a
+              >
+              <div class="css004" aria-hidden="true"></div>
+            </div>
+            <div class="css4" tabindex="0" role="button">
+              <a class="css04" href="#">
+                <span class="css02 ">
+                  New, Coming, Leaving</span>
+              </a>
+              <div class="css004" aria-hidden="true"></div>
+            </div>
+            <span class="css03">|</span>
+            <a href="#">
+              <div class="css4">
+                  <span class="css02">Data &amp; API</span>
+              </div>
+                <div class="css004" aria-hidden="true">
+            </a>
+          </div>
+          <div class="css3"></div>
+        </div>
+      </header>
+
+      <!-- main -->
+     <div> 
+      <div class="ReactVirtualized__Grid ReactVirtualized__List css-10b12fz" 
+              style="
+                box-sizing: border-box;
+                direction: ltr;
+                height: auto;
+                position: relative;
+                width: 1463px;
+                will-change: transform;
+                overflow: auto;
+              ">
+              <div class="ReactVirtualized__Grid__innerScrollContainer"
+                style="
+                  width: auto;
+                  height: 951px;
+                  max-width: 1463px;
+                  max-height: 2700px;
+                  overflow: hidden;
+                  position: relative;
+                " >
+              <section
+                style="
+                    height: 405px;
+                    left: 50px;
+                    position: absolute;
+                    top: 0px;
+                    width: 100%;
+                " >
+                 <div>
+                  <div>
+                    <div class="csskit ">
+                        <div class="css1k ">
+                            <a data-testid="Trending Movies" href="#" class="cssarr">
+                                <h2 class="cssarrow ">Trending Movies</h2>
+                                <span class="icon-leftRightArrow cssne "></span>
+                            </a>
+                        </div>   
+                    </div>
+                  <div class="cssnew ">
+                    <div  class="ReactVirtualized__Grid "
+                      style="
+                        background-color: #081118;
+                        box-sizing: border-box;
+                        direction: ltr;
+                        height: 360px;
+                        position: relative;
+                        width: 1348px;
+                        will-change: transform;
+                        overflow: auto hidden;
+                      " >
+                      <div class="ReactVirtualized__Grid__innerScrollContainer"
+                        style="
+                          width: 756px;
+                          height: 360px;
+                          max-width: 3656px;
+                          max-height: 360px;
+                          overflow: hidden;
+                          position: relative;
+                          background-color: #081118;
+                        " >
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 0px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                            background-color: #081118;
+                          "
+                        >
+                          <div class="css-vwqxyv">
+                            <a href="#" class="css-0">
+                              <div class="csstr ">
+                                    <div class="cssri">
+                                        <picture class="cssrit ">
+                                            <source
+                                                srcset="
+                                                    https://img.rgstatic.com/content/movie/c88a48d6-68b8-43f3-8891-e5038371705d/poster-92.webp   92w,
+                                                    https://img.rgstatic.com/content/movie/c88a48d6-68b8-43f3-8891-e5038371705d/poster-185.webp 185w
+                                                "
+                                                type="image/webp" />
+                                            <img class="cssrih" src="#" alt=" Doctor Strange" />
+                                        </picture>
+                                    </div>  
+                                    <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr">
+                                        <span>Want to See</span>
+                                    </button>
+                                    <button title="Add to Seen Movies" data-type="seen" class="css-8vh">
+                                        <span>Seen It</span>
+                                    </button>
+                              </div>
+                                  <span class="css-7gjgv">
+                                        <p>
+                                          <span>Doctor Strange in the Multiverse of Madness</span>(2022)
+                                        </p>
+                                  </span>
+                                </a> 
+                          </div>
+                        </div>
+                        <div class="css-hg"
+                          style="
+                            height: 360px;
+                            left: 184px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv">
+                            <a href="#" class="css-0">
+                              <div class="csstr">
+                                <div class="cssri">
+                                  <picture class="cssrit">
+                                    <source
+                                        srcset="
+                                            https://img.rgstatic.com/content/movie/d90226cb-126f-494e-88eb-5866b167011f/poster-154.webp 154w,
+                                            https://img.rgstatic.com/content/movie/d90226cb-126f-494e-88eb-5866b167011f/poster-185.webp 185w,
+                                        "
+                                      type="image/webp"/>
+                                    <img class="cssrih " src="#" alt="Heart of Stone"/>
+                                 </picture>
+                                </div>  
+                                <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                    <span>Want to See</span>
+                                </button>
+                                <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                    <span>Seen It</span>
+                                </button>
+                                </div>
+                              </div>
+                              <span class="css-d ">
+                                <p>
+                                  <span>Heart of Stone</span>
+                                  (2023)
+                                </p>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 368px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          " >
+                          <div class="css-vwqxyv">
+                            <a href="#" class="css-0 ">
+                              <div class="csstr ">
+                                <div class="cssri ">
+                                  <picture class="cssrit ">
+                                    <source
+                                        srcset="
+                                        https://img.rgstatic.com/content/movie/c77578d5-2736-4da6-9e8e-269509c5ef61/poster-185.webp 185w,
+                                        https://img.rgstatic.com/content/movie/c77578d5-2736-4da6-9e8e-269509c5ef61/poster-342.webp 342w
+                                        "
+                                      type="image/webp" />
+                                    <img class="cssrih" src="#" alt="Avatar: The Way of Water" />
+                                </picture>
+                                </div>
+                                <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                    <span>Want to See</span>
+                                </button>
+                                <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                    <span>Seen It</span>
+                                </button>
+                              </div>
+                              <span class="css-7gjgv">
+                                    <p>
+                                        <span >Avatar: The Way of Water</span>
+                                        (2022)
+                                    </p>
+                              </span>
+                              </a>
+                          </div>
+                        </div>
+
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 552px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 " >
+                              <div class="csstr ">
+                                <div class="cssri ">
+                                  <picture class="cssrit ">
+                                     <source
+                                      srcset="
+                                        https://img.rgstatic.com/content/movie/9706ffd8-8462-40d8-a976-049bb7ba7be4/poster-92.webp   92w,
+                                        https://img.rgstatic.com/content/movie/9706ffd8-8462-40d8-a976-049bb7ba7be4/poster-154.webp 154w
+                                      "
+                                      type="image/webp" />
+                                       
+                                      <img class="cssrih" src="#" alt="Painkiller Poster" />
+                                    </picture>
+                                </div>
+                                <button title="Add to Want To See Movies" class="css-marr " >
+                                  <span>Want to See</span></button >
+                                <button title="Add to Seen Movies" class="css-8vh ">
+                                  <span>Seen It</span>
+                                </button>
+                              </div>
+                              <span class="css-7gjgv ">
+                                <p>
+                                    <span >Asteroid City</span>(2023)
+                                </p>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 736px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 ">
+                              <div class="csstr ">
+                                    <div class="cssri ">
+                                        <picture class="cssrit ">
+                                            <source
+                                                srcset="
+                                                https://img.rgstatic.com/content/show/849d4953-b46c-4028-86ca-3dc70088443d/poster-185.webp 185w,
+                                                "
+                                                type="image/webp" />
+                                           
+                                           <img class="cssrih" src="#" alt="Spegial OPS: Lioness" />
+                                        </picture>
+                                    </div>
+                                    <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                      <span>Want to See</span>
+                                    </button>
+                                    <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                       <span>Seen It</span>
+                                    </button>
+                              </div>
+                              <span class="css-7gjgv ">
+                                    <p>
+                                        <span >Spegial OPS: Lioness</span>
+                                        (2023)
+                                    </p>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                        <div role="cell" class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 920px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 ">
+                              <div class="csstr ">
+                                <div class="cssri ">
+                                  <picture class="cssrit ">
+                                    <source
+                                      srcset="
+                                        https://img.rgstatic.com/content/movie/87b5bac0-c3a2-45af-984a-4927ec34e04d/poster-92.webp   92w,
+                                      "
+                                      type="image/webp" />
+                                      <img class="cssrih" src="#" alt="Broker" />
+                                  </picture>
+                                </div>
+                                <div class="css-mah ">
+                                </div>
+                                <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                    <span>Want to See</span>
+                                  </button>
+                                  <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                     <span>Seen It</span>
+                                  </button>
+                              </div>
+                              <span class="css-7gjgv "><p>
+                                  <span >Broker</span>
+                                  (2022)
+                                </p>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 1104px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 ">
+                                <div class="csstr ">
+                                    <div class="cssri ">
+                                    <picture class="cssrit ">
+                                        <source
+                                        srcset="
+                                            https://img.rgstatic.com/content/movie/1f88c295-a153-4667-b293-19ef7bae053b/poster-92.webp   92w,
+                                            https://img.rgstatic.com/content/movie/1f88c295-a153-4667-b293-19ef7bae053b/poster-154.webp 154w,
+                                        "
+                                        type="image/webp" />
+                                        
+                                        <img class="cssrih" src="#" alt=" Memory"/>
+                                        </picture>
+                                    </div>
+                                    <div class="css-mah ">
+                                      <div class="css-mahes">
+                                        <img alt="Reelgood Logo" class="css-0" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0MyA0MyI+PHRpdGxlPlBhZ2UgMTwvdGl0bGU+PGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+PGRlZnM+PHBvbHlnb24gaWQ9InBhdGgtMSIgcG9pbnRzPSIxNC4yOTggMzIuNzI1IDI4LjQwMiAzMi43MjUgMjguNDAyIC4wMTEgLjE5NSAuMDExIC4xOTUgMzIuNzI1IDE0LjI5OCAzMi43MjUiLz48cG9seWdvbiBpZD0icGF0aC0zIiBwb2ludHM9IjIzLjQyOCAuMTEzIDAgLjExMyAwIDI3LjE2NSAyMy40MjggMjcuMTY1Ii8+PC9kZWZzPjxnIGlkPSJTeW1ib2xzIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIj48ZyBpZD0iZm9vdGVyTGlua3MiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTUzLjAwMDAwMCwgLTQuMDAwMDAwKSI+PGcgaWQ9Ikdyb3VwLTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwNjQuMDAwMDAwLCA0LjAwMDAwMCkiPjxnIGlkPSJQYWdlLTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg5LjIwNTQ3OSwgMC4wMDAwMDApIj48ZyBpZD0iR3JvdXAtMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTQuMTU5OTUyLCA5Ljk1NjMzNCkiPjxtYXNrIGlkPSJtYXNrLTIiIGZpbGw9IiNmZmYiPjx1c2UgeGxpbms6aHJlZj0iI3BhdGgtMSIvPjwvbWFzaz48cGF0aCBpZD0iRmlsbC0xIiBmaWxsPSIjMDBEQzg5IiBkPSJNMjEuNzc1MDc5MywyMC43ODc0Mzg0IEMyNC44Njc2MTI3LDE5LjU1NjE1MTkgMjguMDQ2OTkzOCwxNi4zODg3MjggMjguMDQ2OTkzOCwxMS4wMDAwNzk4IEMyOC4wNDY5OTM4LDQuNDI3MzQ0ODggMjMuNDM3MTQyOSwwLjAxMDY5ODYzMDEgMTYuNTc2NDg5LDAuMDEwNjk4NjMwMSBMMTIuODc1MDc3NiwwLjAxMDY5ODYzMDEgTDEyLjg3NTA3NzYsNy41OTM4MjQ3NCBMMTUuMzI0NDM0Niw3LjU5MzgyNDc0IEMxNy4xNjExMzc3LDcuNTkzODI0NzQgMTkuMDE5ODY3Myw4LjczMTAyNjE5IDE5LjAxOTg2NzMsMTAuOTAzNzkyMSBDMTkuMDE5ODY3MywxMy4wNzYyNDM0IDE3LjE2MTEzNzcsMTQuMjEzNDQ0OCAxNS4zMjQ0MzQ2LDE0LjIxMzQ0NDggTDkuMDc4MDA3OTQsMTQuMjEzNDQ0OCBMOS4wNzgwMDc5NCw5LjQ5NTY2MzU4IEwwLjE5NDk5ODI2OCwxNC4zMTAwNDcxIEwwLjE5NDk5ODI2OCwzMi43MjUyMjE2IEw5LjA3ODAwNzk0LDMyLjcyNTIyMTYgTDkuMDc4MDA3OTQsMjEuODQ0NzE0NyBMMTIuODI2OTMzOCwyMS44NDQ3MTQ3IEwxOC4yMTkwNDM0LDMyLjcyNTIyMTYgTDI4LjQwMTkzNjYsMzIuNzI1MjIxNiBMMjEuNzc1MDc5MywyMC43ODc0Mzg0IFoiIG1hc2s9InVybCgjbWFzay0yKSIvPjwvZz48ZyBpZD0iR3JvdXAtNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsIDAuMjAxNzAxKSI+PG1hc2sgaWQ9Im1hc2stNCIgZmlsbD0iI2ZmZiI+PHVzZSB4bGluazpocmVmPSIjcGF0aC0zIi8+PC9tYXNrPjxwYXRoIGlkPSJGaWxsLTQiIGZpbGw9IiMwMERDODkiIGQ9Ik0zLjE4MjQzMzQsMTIuNTc4NDEwOSBMMy4xODI0MzM0LDUuNjI0MzAxMzMgTDE0Ljc5MzI3OTEsMTIuMzI4MjUxOCBMNS4zMjcxOTQwOCwxNy45NDY2MDU5IEw1LjMyNzE5NDA4LDEyLjU3ODQxMDkgTDMuMTgyNDMzNCwxMi41Nzg0MTA5IFogTS05LjQzOTk2Nzc3ZS0wNSwwLjExMjkzMzQ4MSBMLTkuNDM5OTY3NzdlLTA1LDI3LjE2NTM2MzggTDIzLjQyODAxNzYsMTMuNjM5MTQ4NiBMLTkuNDM5OTY3NzdlLTA1LDAuMTEyOTMzNDgxIFoiIG1hc2s9InVybCgjbWFzay00KSIvPjwvZz48L2c+PC9nPjwvZz48L2c+PC9zdmc+"
+                                        width="28" height="17" />
+                                      </div>
+                                    </div>
+                                    <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                        <span>Want to See</span>
+                                      </button>
+                                      <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                         <span>Seen It</span>
+                                      </button>
+                                </div>
+                              <span class="css-7gjgv ">
+                                    <p>
+                                    <span >Memory</span>
+                                    (2022)
+                                    </p>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 1288px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 " >
+                              <div class="csstr ">
+                                <div class="cssri ">
+                                  <picture class="cssrit ">
+                                    <source
+                                      srcset="
+                                        https://img.rgstatic.com/content/movie/6d385e7f-352c-4681-81ef-3e68c7e10cea/poster-154.webp 154w,
+                                        https://img.rgstatic.com/content/movie/6d385e7f-352c-4681-81ef-3e68c7e10cea/poster-342.webp 342w
+                                      "
+                                      type="image/webp" />
+                                    
+                                      <img class="cssrih" src="#" alt=" Memory"/>
+                                    </picture>
+                                </div>
+                                <div class="cssrich ">
+                                </div>
+                                <div class="css-mah ">   
+                                </div>
+                                <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                    <span>Want to See</span>
+                                  </button>
+                                  <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                     <span>Seen It</span>
+                                  </button>
+                              </div>
+                              <span class="css-7gjgv ">
+                                <p>
+                                  <span >The Tomorrow War</span>
+                                  (2021)
+                                </p>
+                                </span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="css-hg "
+                          style="
+                            height: 360px;
+                            left: 1472px;
+                            position: absolute;
+                            top: 0px;
+                            width: 184px;
+                          "
+                        >
+                          <div class="css-vwqxyv ">
+                            <a href="#" class="css-0 ">
+                              <div class="csstr ">
+                                <div class="cssri ">
+                                  <picture class="cssrit ">
+                                        <source
+                                        srcset="
+                                            https://img.rgstatic.com/content/movie/ac7eaa28-934c-4d63-bf67-8cc59f750768/poster-92.webp   92w,
+                                            https://img.rgstatic.com/content/movie/ac7eaa28-934c-4d63-bf67-8cc59f750768/poster-154.webp 154w
+                                        "
+                                        type="image/webp" />
+                                       
+                                        <img class="cssrih 1" src="#" alt=" Memory"/>
+                                  </picture>
+                                </div>
+                                    <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                        <span>Want to See</span>
+                                    </button>
+                                    <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                        <span>Seen It</span>
+                                    </button>
+                              </div>                             
+                              <span class="css-d ">
+                                  <p>
+                                    <span>Guardians of the Galaxy Vol. 3</span>
+                                    (2023)
+                                  </p>
+                                <div class="css-d4ed">
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section>
+            
+           <!--  2nd main part -->
+
+
+            <section
+                style="
+                height: 405px;
+                left: 0px;
+                position: absolute;
+                top: 405px;
+                width: 100%;
+                background-color:#081118;
+            "
+            > 
+          <div>
+            <div class="css-1v8x7dw ">
+              <div class="css-cssaaaa ">
+                <div class="css1k ">
+                  <a href="#" class="cssarr">
+                    <h2 class="cssarrow ">Top 10 This Week</h2>
+                    <span class="icon-leftRightArrow  cssne "></span>
+                  </a>
+                  <h5 style="color: gray;"> The most popular movies on Reelgood</h5>
+                </div>
+              </div>
+              <div class="cssnew ">
+                <div class="css-csshsv " style="height: 360px; width: 1448px">
+                  <div class="css-kj ">
+                    <div role="cell"class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                          <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset=" 
+                                    https://img.rgstatic.com/content/show/94474f47-5d9a-4d16-b7af-c897d53f2d89/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih" src="#" alt=" Only Murders in the building"/>
+                                </picture>
+                            </div>
+                            <div class="css-mah ">
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                                <p>
+                                <span >Only Murders in the building</span>(2021)
+                                </p>
+                          </span>
+                          </a>
+                      </div>
+                    </div>
+                    <div role="cell" class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                          <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/movie/d90226cb-126f-494e-88eb-5866b167011f/poster-92.webp   92w,  
+                                    https://img.rgstatic.com/content/movie/d90226cb-126f-494e-88eb-5866b167011f/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih 1" src="#" alt=" Heart of Stone"/>
+                                </picture>
+                            </div>
+                            <div class="cssrich " >
+                            </div>
+                            <div class="css-mah ">
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Heart of Stone</span>
+                              (2023)
+                            </p>
+                          </span>
+                          </a>
+                      </div>
+                    </div>
+                    <div class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                            <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/show/a767cf71-aa8e-4cac-9551-57b8e34d02ea/poster-92.webp   92w,
+                                    https://img.rgstatic.com/content/show/a767cf71-aa8e-4cac-9551-57b8e34d02ea/poster-154.webp 154w, 
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih" src="#" alt=" Painkiller"/>
+                            </picture>
+                            </div>
+                            <div class="css-mah ">
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Painkiller</span>
+                              (2023)
+                            </p>
+                          </span>
+                          </a>
+                      </div>
+                    </div>
+                    <div class="css-hg " style="width: 184px" >
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                            <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit " >
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/movie/9706ffd8-8462-40d8-a976-049bb7ba7be4/poster-185.webp 185w,
+                                    https://img.rgstatic.com/content/movie/9706ffd8-8462-40d8-a976-049bb7ba7be4/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih 1" src="#" alt=" Painkiller"/></picture>
+                            </div>
+                            <div class="css-mah ">
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Asteroid City</span>
+                              (2023)
+                            </p>
+                            </span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="css-hg "style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                            <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/show/849d4953-b46c-4028-86ca-3dc70088443d/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih" src="#" alt="Spegial OPS: Lioness"/></picture>
+                            </div>
+                            <div class="css-mah ">
+                             </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                        </div>
+                        <span class="css-7gjgv ">
+                          <p>
+                            <span >Spegial OPS: Lioness</span>
+                            (2023)
+                          </p>
+                        </span>
+                    </a>
+                    </div>
+                </div>
+
+                    <div class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#"class="css-0 ">
+                          <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/show/65b48ff4-ec58-41e0-9c00-a28ff4ce4a82/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih 1" src="#" alt="Ahsoka"/></picture>
+                            </div>
+                            <div class="css-mah ">
+                              <div class="css-mahes">
+                              </div>
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Ahsoka</span>
+                              (2023)
+                            </p>
+                        </span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 " >
+                          <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                    https://img.rgstatic.com/content/movie/ac7eaa28-934c-4d63-bf67-8cc59f750768/poster-342.webp 342w
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih 1" src="#" alt=" Painkiller"/>
+                              </picture> 
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Guardians of the Galaxy Vol. 3</span>(2023)
+                            </p>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                   
+                    <div class="css-hg " style="width: 184px">                      
+                    <div class="css-vwqxyv ">
+                      <a href="#" class="css-0 ">
+                        <div class="csstr ">
+                          <div class="cssri ">
+                            <picture class="cssrit ">
+                                <source
+                                srcset="
+                                https://img.rgstatic.com/content/show/fddab2c4-be60-4282-b990-7453ca6f6598/poster-92.webp   92w,
+                                https://img.rgstatic.com/content/show/fddab2c4-be60-4282-b990-7453ca6f6598/poster-154.webp 154w
+                                "
+                                type="image/webp" />
+                                <img class="cssrih 1" src="#" alt="Dark Winds"/>
+                            </picture>
+                          </div>
+                          <div class="cssrich ">
+                          </div>
+                          <div class="css-mah ">
+                          </div>
+                          <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                        </div>
+                        <span class="css-7gjgv ">
+                          <p>
+                            <span >Dark Winds</span>(2022)
+                          </p>
+                        </span>
+                     </a>
+                    </div>
+                  </div>
+                  <div class="css-hg " style="width: 184px" >
+                  <div class="css-vwqxyv ">
+                    <a href="#"class="css-0 ">
+                      <div class="csstr ">
+                        <div class="cssri ">
+                          <picture class="cssrit ">
+                            <source
+                              srcset="
+                              https://img.rgstatic.com/content/movie/c77578d5-2736-4da6-9e8e-269509c5ef61/poster-185.webp 185w,
+                              https://img.rgstatic.com/content/movie/c77578d5-2736-4da6-9e8e-269509c5ef61/poster-342.webp 342w
+                              "
+                              type="image/webp" />
+                              <img class="cssrih 1" src="#" alt="Avatar: The Way of Water Poster"/>
+                            </picture>
+                        </div>
+                        <div class="cssrich ">
+                        </div>
+                        <div class="css-mah ">
+                        </div>
+                        <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                            <span>Want to See</span>
+                        </button>
+                        <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                            <span>Seen It</span>
+                        </button>
+                      </div>
+                      <span class="css-7gjgv ">
+                        <p>
+                          <span >Avatar: The Way of Water Poster</span>(2022)
+                        </p>
+                      </span>
+                    </a> 
+                  </div>
+                </div>
+                <div class="css-hg " style="width: 184px">
+                <div class="css-vwqxyv ">
+                  <a href="#" class="css-0 ">
+                    <div class="csstr ">
+                      <div class="cssri ">
+                        <picture class="cssrit ">
+                            <source
+                                srcset="
+                                https://img.rgstatic.com/content/show/849d4953-b46c-4028-86ca-3dc70088443d/poster-342.webp 342w
+                                "
+                                type="image/webp" />
+                            <img class="cssrih 1" src="#" alt="Special Ops: Lioness Poster"/>
+                        </picture>
+                      </div>
+                      <div class="cssrich ">
+                      </div>
+                      <div class="css-mah ">
+                      </div>
+                      <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                        <span>Want to See</span>
+                    </button>
+                    <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                        <span>Seen It</span>
+                    </button>
+                    </div>
+                    <span class="css-7gjgv ">
+                      <p>
+                        <span >Special Ops: Lioness Poster</span>
+                        (2023)
+                      </p></span>
+                    </a>
+                  
+                </div>
+              </div>
+
+              <div class="css-hg " style="width: 184px">
+              <div class="css-vwqxyv ">
+                <a href="#" class="css-0 ">
+                    <div class="csstr ">
+                    <div class="cssri ">
+                      <picture class="cssrit ">
+                        <source
+                          srcset="
+                          https://img.rgstatic.com/content/movie/87b5bac0-c3a2-45af-984a-4927ec34e04d/poster-185.webp 185w,
+                          https://img.rgstatic.com/content/movie/87b5bac0-c3a2-45af-984a-4927ec34e04d/poster-342.webp 342w
+                          "
+                          type="image/webp" />
+                        
+                          <img class="cssrih" src="#" alt="Broker"/>
+                        </picture>
+                    </div>
+                    <div class="cssrich">
+                    </div>
+                    <div class="css-mah ">
+                    </div>
+                    <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                        <span>Want to See</span>
+                    </button>
+                    <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                        <span>Seen It</span>
+                    </button>
+                  </div>
+                  <span class="css-7gjgv ">
+                    <p>
+                      <span >Broker</span>(2022)
+                    </p>
+                 </span>
+                  </a>
+              </div>
+            </div>
+            <div class="css-hg " style="width: 184px">
+            <div class="css-vwqxyv ">
+              <a href="#" class="css-0 ">
+                <div class="csstr ">
+                  <div class="cssri ">
+                    <picture class="cssrit ">
+                        <source
+                            srcset="
+                            https://img.rgstatic.com/content/movie/09d14cc4-82ad-4532-84d7-db8478c1a5e4/poster-185.webp 185w,
+                            https://img.rgstatic.com/content/movie/09d14cc4-82ad-4532-84d7-db8478c1a5e4/poster-342.webp 342w
+                            "
+                            type="image/webp" />
+                            <img class="cssrih" src="#" alt="Aftersun Poster"/>
+                        </picture>
+                  </div>
+                  <div class="cssrich ">
+                  </div>
+                  <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                    <span>Want to See</span>
+                </button>
+                <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                    <span>Seen It</span>
+                </button>
+                </div>
+                <span class="css-7gjgv ">
+                  <p>
+                    <span>Aftersun Poster</span>
+                    (2023)
+                  </p>
+                </span>
+                </a> 
+            </div>
+          </div>
+
+          <div class="css-hg " style="width: 184px" >
+          <div class="css-vwqxyv ">
+            <a href="#" class="css-0 ">
+                <div class="csstr ">
+                <div class="cssri ">
+                  <picture class="cssrit ">
+                    <source
+                      srcset="
+                      https://img.rgstatic.com/content/movie/e5eccce4-85ba-46be-b7b2-45080bcc3e63/poster-185.webp 185w,
+                      https://img.rgstatic.com/content/movie/e5eccce4-85ba-46be-b7b2-45080bcc3e63/poster-342.webp 342w
+                      "
+                      type="image/webp" />
+                      <img class="cssrih" src="#" alt="Dark Winds"/></picture></picture>
+                </div>
+                <div class="cssrich ">
+                </div>
+                <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                    <span>Want to See</span>
+                </button>
+                <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                    <span>Seen It</span>
+                </button>
+              </div>
+              <span class="css-7gjgv ">
+                <p>
+                  <span >Lightyear</span>(2022)
+                </p>
+              </span>
+            </a> 
+          </div>
+        </div>
+
+        <div class="css-hg " style="width: 184px">
+                      <div class="css-vwqxyv ">
+                        <a href="#" class="css-0 ">
+                            <div class="csstr ">
+                            <div class="cssri ">
+                              <picture class="cssrit ">
+                                <source
+                                  srcset="
+                                  https://img.rgstatic.com/content/movie/c88a48d6-68b8-43f3-8891-e5038371705d/poster-92.webp   92w,
+                                  https://img.rgstatic.com/content/movie/c88a48d6-68b8-43f3-8891-e5038371705d/poster-154.webp 154w,
+                                  "
+                                  type="image/webp" />
+                                  <img class="cssrih 1" src="#" alt="Doctor Strange in the Multiverse of Madness Poste"/>
+                                </picture>
+                            </div>
+                            <div class="cssrich ">
+                            </div>
+                            <button title="Add to Want To See Movies" data-type="watchlist" class="css-marr ">
+                                <span>Want to See</span>
+                            </button>
+                            <button title="Add to Seen Movies" data-type="seen" class="css-8vh ">
+                                <span>Seen It</span>
+                            </button>
+                          </div>
+                          <span class="css-7gjgv ">
+                            <p>
+                              <span >Doctor Strange in the Multiverse of Madness Poste</span>
+                              (2022)
+                            </p>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+       
+       <section class="poster">
+        <div class="container">
+            <div class="poems">
+                <p>
+                    A charismatic fisherman struggling with debt. A troubled woman wrestling with demons. 
+                    A gifted accountant ostracised from his family and people. In this ground-breaking first 
+                    season of The Chosen see how Jesus reaches each of these and more as He works His first miracles and embarks on 
+                    His ministry to change the world. See Him through the eyes of those who knew Him.
+                </p>
+            </div>
+        </div>          
+       </section>
+
+<footer>
+    <div class="cssfooter e1w8h0er7">
+        <div class="cssfoot">
+            <a class="css-0 ewkc9rp0" href="#">
+                <img alt="Reelgood Wordmark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMTEgMjciPjx0aXRsZT5Mb2dvPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBpZD0iU3ltYm9scyIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgaWQ9IkxvZ28iIGZpbGw9IiMwMERDODkiPjxnIGlkPSJHcm91cC00Ij48cGF0aCBpZD0iRmlsbC0xIiBkPSJNMzYuMjc3MjY2NywxNS43NTQ3Nzk2IEwzNi4yNzcyNjY3LDE2LjU2ODg1MTUgTDI3LjUwNTIzNzQsMTYuNTY4ODUxNSBDMjcuODQ1MTYxNCwxNy44MzUzMjkxIDI4Ljk4NTIzNzQsMTguODQ4MzM4OCAzMC41MTI2MjM0LDE4Ljg0ODMzODggQzMxLjU4MjgxMDUsMTguODQ4MzM4OCAzMi43OTE0NzcyLDE4LjQwMzY5MjIgMzMuNDUyMDY3OCwxNy43NjY3ODkzIEwzNS4zMDM1ODI1LDIwLjI3NzU0NDcgQzM0LjA5ODU5NDIsMjEuMzc5Nzg1NCAzMi4yMjY3NDA0LDIyLjAxMjE2MjEgMzAuMTY3NTA2NCwyMi4wMTIxNjIxIEMyNi4yMjIzNTQ0LDIyLjAxMjE2MjEgMjMuNDY2ODI4MSwxOS4zMDc2NDE3IDIzLjQ2NjgyODEsMTUuNDM1NTczOCBDMjMuNDY2ODI4MSwxMS43MDAzNjk5IDI2LjI2MjYsOC44ODM1NTYzMSAyOS45NzA2MDU4LDguODgzNTU2MzEgQzMzLjY4NDAyMTEsOC44ODM1NTYzMSAzNi4yNzcyNjY3LDExLjcwOTIwNjggMzYuMjc3MjY2NywxNS43NTQ3Nzk2IFogTTI5Ljk3MDYwNTgsMTIuMDQ3Mzc5NiBDMjguNDczOTQ1LDEyLjA0NzM3OTYgMjcuNzA2NDY1NSwxMy4wMjIyMzk4IDI3LjQ1Mzc0MDQsMTMuOTg4NDc4NiBMMzIuNTEwODM5OCwxMy45ODg0Nzg2IEMzMi4zMTM5MzkyLDEzLjAyNTA0MTcgMzEuNTY3MDE1MiwxMi4wNDczNzk2IDI5Ljk3MDYwNTgsMTIuMDQ3Mzc5NiBaIi8+PHBhdGggaWQ9IkZpbGwtMyIgZD0iTTQ5LjkzMTQ3ODQsMTUuNzU0Nzc5NiBMNDkuOTMxNDc4NCwxNi41Njg4NTE1IEw0MS4xNTk0NDkxLDE2LjU2ODg1MTUgQzQxLjQ5OTE1NjcsMTcuODM1MzI5MSA0Mi42Mzk0NDkxLDE4Ljg0ODMzODggNDQuMTY2ODM1MSwxOC44NDgzMzg4IEM0NS4yMzcwMjIyLDE4Ljg0ODMzODggNDYuNDQ1Njg4OSwxOC40MDM2OTIyIDQ3LjEwNjI3OTUsMTcuNzY2Nzg5MyBMNDguOTU3Nzk0MiwyMC4yNzc1NDQ3IEM0Ny43NTI4MDU4LDIxLjM3OTc4NTQgNDUuODgwOTUyLDIyLjAxMjE2MjEgNDMuODIxNzE4MSwyMi4wMTIxNjIxIEMzOS44NzY1NjYxLDIyLjAxMjE2MjEgMzcuMTIxMDM5OCwxOS4zMDc2NDE3IDM3LjEyMTAzOTgsMTUuNDM1NTczOCBDMzcuMTIxMDM5OCwxMS43MDAzNjk5IDM5LjkxNjgxMTcsOC44ODM1NTYzMSA0My42MjQ4MTc1LDguODgzNTU2MzEgQzQ3LjMzODIzMjcsOC44ODM1NTYzMSA0OS45MzE0Nzg0LDExLjcwOTIwNjggNDkuOTMxNDc4NCwxNS43NTQ3Nzk2IFogTTQzLjYyNDgxNzUsMTIuMDQ3Mzc5NiBDNDIuMTI4MTU2NywxMi4wNDczNzk2IDQxLjM2MDY3NzIsMTMuMDIyMjM5OCA0MS4xMDc5NTIsMTMuOTg4NDc4NiBMNDYuMTY1MDUxNSwxMy45ODg0Nzg2IEM0NS45NjgxNTA5LDEzLjAyNTA0MTcgNDUuMjIxMjI2OSwxMi4wNDczNzk2IDQzLjYyNDgxNzUsMTIuMDQ3Mzc5NiBaIi8+PHBvbHlnb24gaWQ9IkZpbGwtNSIgcG9pbnRzPSI1MS40ODEgMjEuNzE4IDU1LjI5OCAyMS43MTggNTUuMjk4IDQuNjYyIDUxLjQ4MSA0LjY2MiIvPjxwYXRoIGlkPSJGaWxsLTciIGQ9Ik03Ni45MzcxNTA5LDguODgzNTEzMiBDODAuNzE1NDc4NCw4Ljg4MzUxMzIgODMuNDU3ODA1OCwxMS42MzkxMTUxIDgzLjQ1NzgwNTgsMTUuNDM1NTMwNyBDODMuNDU3ODA1OCwxOS4yNDYxNzE1IDgwLjcxNTQ3ODQsMjIuMDEyMTE5IDc2LjkzNzE1MDksMjIuMDEyMTE5IEM3My4xNzI2NzEzLDIyLjAxMjExOSA3MC40NDA1MTM1LDE5LjI0NjE3MTUgNzAuNDQwNTEzNSwxNS40MzU1MzA3IEM3MC40NDA1MTM1LDExLjYzOTExNTEgNzMuMTcyNjcxMyw4Ljg4MzUxMzIgNzYuOTM3MTUwOSw4Ljg4MzUxMzIgWiBNNzYuOTE3ODkzNiwxOC41NTM4NzYzIEM3OC43MzA4OTM2LDE4LjU1Mzg3NjMgNzkuNTU2NTc3OCwxNi45Mzc1ODcgNzkuNTU2NTc3OCwxNS40MzU1MzA3IEM3OS41NTY1Nzc4LDEzLjk0NTc1OTggNzguNzMwODkzNiwxMi4zNDE5NzE1IDc2LjkxNzg5MzYsMTIuMzQxOTcxNSBDNzUuMTExMzg0OCwxMi4zNDE5NzE1IDc0LjMwMjc5NDIsMTMuODk1NTQwNCA3NC4zMDI3OTQyLDE1LjQzNTUzMDcgQzc0LjMwMjc5NDIsMTYuOTg3ODA2NCA3NS4xMTEzODQ4LDE4LjU1Mzg3NjMgNzYuOTE3ODkzNiwxOC41NTM4NzYzIFoiLz48cGF0aCBpZD0iRmlsbC04IiBkPSJNOTAuNzk2NjgwMSw4Ljg4MzUxMzIgQzk0LjU3NTAwNzYsOC44ODM1MTMyIDk3LjMxNzMzNTEsMTEuNjM5MTE1MSA5Ny4zMTczMzUxLDE1LjQzNTUzMDcgQzk3LjMxNzMzNTEsMTkuMjQ2MTcxNSA5NC41NzUwMDc2LDIyLjAxMjExOSA5MC43OTY2ODAxLDIyLjAxMjExOSBDODcuMDMyMjAwNiwyMi4wMTIxMTkgODQuMzAwMDQyNywxOS4yNDYxNzE1IDg0LjMwMDA0MjcsMTUuNDM1NTMwNyBDODQuMzAwMDQyNywxMS42MzkxMTUxIDg3LjAzMjIwMDYsOC44ODM1MTMyIDkwLjc5NjY4MDEsOC44ODM1MTMyIFogTTkwLjc3NzQyMjgsMTguNTUzODc2MyBDOTIuNTkwNDIyOCwxOC41NTM4NzYzIDkzLjQxNjEwNywxNi45Mzc1ODcgOTMuNDE2MTA3LDE1LjQzNTUzMDcgQzkzLjQxNjEwNywxMy45NDU3NTk4IDkyLjU5MDQyMjgsMTIuMzQxOTcxNSA5MC43Nzc0MjI4LDEyLjM0MTk3MTUgQzg4Ljk3MDkxNCwxMi4zNDE5NzE1IDg4LjE2MjMyMzQsMTMuODk1NTQwNCA4OC4xNjIzMjM0LDE1LjQzNTUzMDcgQzg4LjE2MjMyMzQsMTYuOTg3ODA2NCA4OC45NzA5MTQsMTguNTUzODc2MyA5MC43Nzc0MjI4LDE4LjU1Mzg3NjMgWiIvPjxwYXRoIGlkPSJGaWxsLTkiIGQ9Ik0xMDcuMDUzODA5LDQuNjYxNzg0NDcgTDExMC44OTUzMTgsNC42NjE3ODQ0NyBMMTEwLjg5NTMxOCwyMS43MTc2MzUgTDEwNy4wNTM4MDksMjEuNzE3NjM1IEwxMDcuMDUzODA5LDIwLjczNTIzMTEgQzEwNi4xMjU5OTYsMjEuNTY0MzkwMyAxMDQuOTcxMjA3LDIyLjAxMjI2OTkgMTAzLjcyNjQwNiwyMi4wMTIyNjk5IEMxMDAuMzY2OTc5LDIyLjAxMjI2OTkgOTguMTA5NzYyNiwxOS4zNzg4NzU3IDk4LjEwOTc2MjYsMTUuNDYwMjUyNCBDOTguMTA5NzYyNiwxMS41MjY3NTczIDEwMC4zNjY5NzksOC44ODM2NjQwOCAxMDMuNzI2NDA2LDguODgzNjY0MDggQzEwNC45ODcwMDIsOC44ODM2NjQwOCAxMDYuMTQxMzU5LDkuMzMzMjY3OTYgMTA3LjA1MzgwOSwxMC4xNjU2NjAyIEwxMDcuMDUzODA5LDQuNjYxNzg0NDcgWiBNMTA3LjA1MzgwOSwxMy40NjAzMTI2IEMxMDYuNTQ3MDYxLDEyLjc5NzU0NTYgMTA1LjU5MDkwMywxMi4zNDE5MDY4IDEwNC42ODczMjQsMTIuMzQxOTA2OCBDMTAzLjA5NDgwOSwxMi4zNDE5MDY4IDEwMi4wMjQ4MzksMTMuNTk1MjM2OSAxMDIuMDI0ODM5LDE1LjQ2MDI1MjQgQzEwMi4wMjQ4MzksMTcuMzEwNjExNyAxMDMuMDk0ODA5LDE4LjU1MzgxMTcgMTA0LjY4NzMyNCwxOC41NTM4MTE3IEMxMDUuNTkwOTAzLDE4LjU1MzgxMTcgMTA2LjU0NzA2MSwxOC4wOTgxNzI4IDEwNy4wNTM4MDksMTcuNDM1NDA1OCBMMTA3LjA1MzgwOSwxMy40NjAzMTI2IFoiLz48cGF0aCBpZD0iRmlsbC0xMCIgZD0iTTE5LjQ3Mjg4MzYsMTUuNzI4MzMzNiBDMjEuMDU1NDQ1LDE1LjEwMDY5ODYgMjIuNjgyNzk1OSwxMy40ODU3MDI1IDIyLjY4Mjc5NTksMTAuNzM4NzIxOSBDMjIuNjgyNzk1OSw3LjM4ODAzMDY4IDIwLjMyMzQ1MDksNS4xMzYzNDcxOCAxNi44MTIzNDU2LDUuMTM2MzQ3MTggTDE0LjkxNzk4ODksNS4xMzYzNDcxOCBMMTQuOTE3OTg4OSw5LjAwMjE2NDY2IEwxNi4xNzE2NjE0LDkuMDAyMTY0NjYgQzE3LjExMTU5MTIsOS4wMDIxNjQ2NiAxOC4wNjI3NzI1LDkuNTgxOTUxMDcgMTguMDYyNzcyNSwxMC42ODk1ODAyIEMxOC4wNjI3NzI1LDExLjc5NzIwOTMgMTcuMTExNTkxMiwxMi4zNzY5OTU3IDE2LjE3MTY2MTQsMTIuMzc2OTk1NyBMMTIuOTc0NzMxNiwxMi4zNzY5OTU3IEwxMi45NzQ3MzE2LDkuOTcxODUyMDQgTDguNDI4NDkxODEsMTIuNDI2MTM3NSBMOC40Mjg0OTE4MSwyMS44MTQxNTExIEwxMi45NzQ3MzE2LDIxLjgxNDE1MTEgTDEyLjk3NDczMTYsMTYuMjY3Mzg0MSBMMTQuODkzMzIyMiwxNi4yNjczODQxIEwxNy42NTI5NTk2LDIxLjgxNDE1MTEgTDIyLjg2NDMzMzksMjEuODE0MTUxMSBMMTkuNDcyODgzNiwxNS43MjgzMzM2IFoiLz48cGF0aCBpZD0iRmlsbC0xMSIgZD0iTTY1LjY3Mzc2NjcsOS4zODkwOTEyNiBMNjkuNTE1Mjc1NCw5LjM4OTA5MTI2IEw2OS41MTUyNzU0LDIwLjc3NjM5ODEgQzY5LjUxNTI3NTQsMjYuMTU4MDY2IDY0Ljc3NzU0NDQsMjYuNzM5MzYxMiA2Mi43NDA1OTcxLDI2LjczOTM2MTIgQzYxLjk3MDczNzQsMjYuNzM5MzYxMiA2MS4yODY3Nzg0LDI2LjY3MzgzODggNjAuNjUwMjA1MywyNi41Mzg2OTkgTDYwLjM3OTk1MzgsMjYuNDgxMTUxNSBMNjAuMzU4NTMyNywyMy4yMDg5MTQ2IEw2MC43NzM1Mzg2LDIzLjI5Mjc1NzMgQzYwLjc4MzQ5MTgsMjMuMjk0OTEyNiA2MS43OTM1MjY5LDIzLjQ5NzA4MzUgNjIuNzQyNTQ0NCwyMy41MDE4MjUyIEM2My42MjI1Mzg2LDIzLjUwMTgyNTIgNjUuNjczNzY2NywyMy4yNDM2MTU1IDY1LjY3Mzc2NjcsMjAuODQ5Njc5NiBMNjUuNjczNzY2NywyMC41MjE0MjE0IEM2NC43MzUzNTE1LDIxLjM4NzAwNTggNjMuNTgwMTI5MiwyMS44NTQ5MzAxIDYyLjM0NjM2MzIsMjEuODU0OTMwMSBDNTguOTQ5NTAzNSwyMS44NTQ5MzAxIDU2Ljc1NDM4NjUsMTkuMzUwNjQwOCA1Ni43NTQzODY1LDE1LjQ3NDQ3NzcgQzU2Ljc1NDM4NjUsMTEuNTk4OTYxMiA1OC45NDk1MDM1LDkuMDk0NDU2MzEgNjIuMzQ2MzYzMiw5LjA5NDQ1NjMxIEM2My42MTE5MzYzLDkuMDk0NDU2MzEgNjQuNzQ3NDY4NCw5LjUzNjk0NzU3IDY1LjY3Mzc2NjcsMTAuMzgzMTM0IEw2NS42NzM3NjY3LDkuMzg5MDkxMjYgWiBNNjUuNjczNzY2NywxMy42Njc2NTYzIEM2NS4xOTk0NzQzLDEzLjAyNjQ0MjcgNjQuMjEzODg5NSwxMi41NTI5MTQ2IDYzLjMzMTk0OCwxMi41NTI5MTQ2IEM2MS42ODk2NjczLDEyLjU1MjkxNDYgNjAuNjY5NDYyNiwxMy42NzIzOTgxIDYwLjY2OTQ2MjYsMTUuNDc0NDc3NyBDNjAuNjY5NDYyNiwxNy4yNzY5ODgzIDYxLjY4OTY2NzMsMTguMzk2Njg3NCA2My4zMzE5NDgsMTguMzk2Njg3NCBDNjQuMTk5MzkyNCwxOC4zOTY2ODc0IDY1LjE4NDc2MDgsMTcuOTIxNjUwNSA2NS42NzM3NjY3LDE3LjI3OTE0MzcgTDY1LjY3Mzc2NjcsMTMuNjY3NjU2MyBaIi8+PHBhdGggaWQ9IkZpbGwtMTIiIGQ9Ik02LjQ5MTIyODA2ZS0wNSwwLjAwMDE3MjQyNzE4NCBMMTEuOTkwMjI4Nyw2Ljg5NTc1MTA3IEw2LjQ5MTIyODA2ZS0wNSwxMy43OTEzMjk3IEw2LjQ5MTIyODA2ZS0wNSwwLjAwMDE3MjQyNzE4NCBaIE0xLjYyODcxNDA0LDYuMzU0OTc2MzEgTDIuNzI2MzgwNyw2LjM1NDk3NjMxIEwyLjcyNjM4MDcsOS4wOTE2MTEyNiBMNy41NzEwMDA1OCw2LjIyNzM4MDE5IEwxLjYyODcxNDA0LDIuODA5ODczNCBMMS42Mjg3MTQwNCw2LjM1NDk3NjMxIFoiLz48L2c+PC9nPjwvZz48L3N2Zz4="/>
+            </a>
+            <div>Streaming's TV Guide © 2023</div>
+        </div>
+    </div>
+</footer>     
+
+            
+  </body>
+</html>
